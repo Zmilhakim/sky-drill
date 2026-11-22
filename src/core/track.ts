@@ -38,7 +38,9 @@ export class TrackDrill implements Drill {
     if (this.done) return
     this.time += dt
     // The path speeds up over the drill; integrating keeps the motion smooth.
-    this.angle += dt * (0.6 + 0.9 * clamp(this.time / this.duration, 0, 1))
+    // It starts from a standstill, so the player has a moment to get the crosshair on it.
+    const ease = clamp(this.time / 2, 0, 1)
+    this.angle += dt * ease * (0.6 + 0.9 * clamp(this.time / this.duration, 0, 1))
     const a = this.angle
     const [p0, p1, p2, p3] = this.phase
     this.x = FIELD_W / 2 + 470 * Math.sin(a + p0) + 150 * Math.sin(2.3 * a + p1)

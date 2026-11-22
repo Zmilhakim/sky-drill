@@ -38,7 +38,7 @@ interface Floater {
 const DRILL_INFO = [
   { name: 'FLICK', line: 'Click each target as fast as you can.' },
   { name: 'HOLD THE ANGLE', line: 'Click the red rivals. Never click a blue teammate.' },
-  { name: 'TRACK', line: 'Keep your crosshair on the moving target. No clicking.' },
+  { name: 'TRACK', line: 'Follow the circle with your crosshair. Just move, no clicking.' },
 ] as const
 
 const INTRO_SECONDS = 3.2
@@ -547,9 +547,21 @@ export class Game {
   private drawTrack(ctx: CanvasRenderingContext2D): void {
     const t = this.track
     const on = t.onTarget
-    ctx.fillStyle = on ? 'rgba(255, 210, 74, 0.25)' : 'rgba(53, 182, 255, 0.15)'
+    const pulse = on ? 0 : 8 * (0.5 + 0.5 * Math.sin(this.clock * 9))
+    if (!on) {
+      // Off target: a dashed line shows exactly where the crosshair has to go.
+      ctx.strokeStyle = 'rgba(244, 249, 255, 0.55)'
+      ctx.lineWidth = 3
+      ctx.setLineDash([14, 12])
+      ctx.beginPath()
+      ctx.moveTo(this.px, this.py)
+      ctx.lineTo(t.x, t.y)
+      ctx.stroke()
+      ctx.setLineDash([])
+    }
+    ctx.fillStyle = on ? 'rgba(255, 210, 74, 0.28)' : 'rgba(53, 182, 255, 0.15)'
     ctx.beginPath()
-    ctx.arc(t.x, t.y, TRACK_RADIUS, 0, Math.PI * 2)
+    ctx.arc(t.x, t.y, TRACK_RADIUS + pulse, 0, Math.PI * 2)
     ctx.fill()
     ctx.strokeStyle = on ? COLOR.gold : COLOR.sky
     ctx.lineWidth = 6
@@ -558,6 +570,8 @@ export class Game {
     ctx.beginPath()
     ctx.arc(t.x, t.y, 9, 0, Math.PI * 2)
     ctx.fill()
+    const labelY = t.y - TRACK_RADIUS - 30 > 190 ? t.y - TRACK_RADIUS - 30 : t.y + TRACK_RADIUS + 34
+    text(ctx, on ? 'SCORING! STAY ON IT' : 'MOVE YOUR CROSSHAIR HERE', t.x, labelY, 24, on ? COLOR.gold : COLOR.white)
     text(ctx, `ON TARGET ${Math.round(t.onShare * 100)}%`, FIELD_W / 2, 150, 28, on ? COLOR.gold : COLOR.dim)
   }
 
