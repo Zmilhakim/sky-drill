@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2306121f'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%2335b6ff' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23ffd24a'/%3E%3C/svg%3E" />
+    <title>Sky Drill: live leaderboard</title>
+    <style>*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden}body{color:#f4f9ff;background:linear-gradient(#06121f,#0c2740);flex-direction:column;padding:4vh 5vw;font-family:Avenir Next,Segoe UI,Helvetica Neue,Arial,sans-serif;display:flex}header{border-bottom:2px solid #78b4e640;justify-content:space-between;align-items:baseline;padding-bottom:2vh;display:flex}h1{letter-spacing:.02em;font-size:7vh;font-weight:800}h1 span{color:#35b6ff;margin-left:1.5vw;font-size:3vh}#meta{color:#8fa9c2;text-align:right;font-size:2.4vh;font-weight:600}main{flex:1;grid-template-columns:2fr 1fr;gap:4vw;min-height:0;padding-top:3vh;display:grid}ol{list-style:none}li{border-radius:1vh;grid-template-columns:6vw 12vw 1fr auto;align-items:center;height:7.2vh;padding:0 1.5vw;font-size:4.4vh;font-weight:700;display:grid}li .n{color:#8fa9c2}li .rank{color:#8fa9c2;font-size:2.2vh;font-weight:600}li:first-child{color:#ffd24a;font-size:5.4vh}li:first-child .n{color:#ffd24a}li.new{background:#ffd24a2e;animation:.6s ease-out pop}@keyframes pop{0%{background:#ffd24a80;transform:scale(1.06)}}.empty{color:#8fa9c2;padding-top:6vh;font-size:3.4vh}aside>div{background:#0a1c2ee0;border:2px solid #78b4e640;border-radius:2vh;margin-bottom:3vh;padding:2.5vh 2vw}aside h2{color:#35b6ff;letter-spacing:.08em;margin-bottom:1vh;font-size:2.2vh}aside .big{font-size:6vh;font-weight:800}aside .small{color:#8fa9c2;font-size:2.2vh;font-weight:600}</style>
+    <script type="module" crossorigin src="./assets/board-CRiHJ4qW.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/leaderboard-ByRWzuxu.js">
+  </head>
+  <body>
+    <header>
+      <h1>SKY DRILL<span>TODAY'S TOP SCORES</span></h1>
+      <div id="meta"></div>
+    </header>
+    <main>
+      <ol id="list"></ol>
+      <aside>
+        <div>
+          <h2>LATEST RUN</h2>
+          <div class="big" id="latest">-</div>
+          <div class="small" id="latestInfo"></div>
+        </div>
+        <div>
+          <h2>FASTEST REACTION TODAY</h2>
+          <div class="big" id="fastest">-</div>
+          <div class="small" id="fastestInfo"></div>
+        </div>
+        <div>
+          <h2>ALL-TIME BEST</h2>
+          <div class="big" id="best">-</div>
+          <div class="small" id="bestInfo"></div>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>
