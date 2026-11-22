@@ -44,6 +44,9 @@ const DRILL_INFO = [
 const INTRO_SECONDS = 3.2
 /** With no input for this long, a run is abandoned and the game returns to the start screen. */
 const IDLE_SECONDS = { play: 12, other: 30 }
+/** Attract screen: highlight each drill card for 1 s, then pause before repeating. */
+const ATTRACT_CYCLE = 10
+const ATTRACT_HIGHLIGHT = 1
 const KEY_ROWS = ['ABCDEFGHI', 'JKLMNOPQR', 'STUVWXYZ']
 
 export interface GameHooks {
@@ -357,12 +360,12 @@ export class Game {
     text(ctx, label, x + w / 2, y + h / 2 + 2, Math.min(34, h * 0.42, (w * 1.45) / label.length), primary ? '#04121f' : COLOR.white)
   }
 
-  private panel(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number): void {
+  private panel(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, highlight = false): void {
     roundRect(ctx, x, y, w, h, 22)
     ctx.fillStyle = COLOR.panel
     ctx.fill()
-    ctx.strokeStyle = COLOR.line
-    ctx.lineWidth = 2
+    ctx.strokeStyle = highlight ? COLOR.sky : COLOR.line
+    ctx.lineWidth = highlight ? 4 : 2
     ctx.stroke()
   }
 
@@ -398,9 +401,13 @@ export class Game {
     text(ctx, 'THE 60-SECOND PRO TRYOUT', 560, 268, 34, COLOR.sky)
     text(ctx, 'Three drills. One score. How close are you to the pros?', 560, 322, 26, COLOR.dim, 'center', 500)
 
+    // Attract-mode highlight: cycle through drill cards every ATTRACT_CYCLE seconds.
+    const cyclePos = this.clock % ATTRACT_CYCLE
+    const highlightIdx = cyclePos < DRILL_INFO.length * ATTRACT_HIGHLIGHT ? Math.floor(cyclePos / ATTRACT_HIGHLIGHT) : -1
+
     DRILL_INFO.forEach((d, i) => {
       const y = 410 + i * 92
-      this.panel(ctx, 110, y - 38, 900, 76)
+      this.panel(ctx, 110, y - 38, 900, 76, i === highlightIdx)
       text(ctx, `${i + 1}`, 156, y, 40, COLOR.sky)
       text(ctx, d.name, 200, y - 13, 26, COLOR.white, 'left')
       text(ctx, d.line, 200, y + 17, 20, COLOR.dim, 'left', 500)
