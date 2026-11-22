@@ -1,7 +1,7 @@
 import { clamp, type Drill, type Fx, FIELD_H, FIELD_W } from './field'
 import { between, type Rng } from './rng'
 
-export const TRACK_RADIUS = 54
+export const TRACK_RADIUS = 66
 export const TRACK_POINTS_PER_SECOND = 320
 
 /** Drill 3: keep the crosshair on a target that drifts and speeds up. */
@@ -38,7 +38,7 @@ export class TrackDrill implements Drill {
     if (this.done) return
     this.time += dt
     // The path speeds up over the drill; integrating keeps the motion smooth.
-    this.angle += dt * (0.9 + 1.5 * clamp(this.time / this.duration, 0, 1))
+    this.angle += dt * (0.6 + 0.9 * clamp(this.time / this.duration, 0, 1))
     const a = this.angle
     const [p0, p1, p2, p3] = this.phase
     this.x = FIELD_W / 2 + 470 * Math.sin(a + p0) + 150 * Math.sin(2.3 * a + p1)

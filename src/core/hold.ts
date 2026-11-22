@@ -76,7 +76,7 @@ export class HoldDrill implements Drill {
       if (free.length) {
         const slot = free[Math.floor(this.rng() * free.length)]
         const kind: PeekKind = this.rng() < 0.7 ? 'rival' : 'mate'
-        this.peeks.push({ slot, kind, bornAt: this.time, life: 1.15 - 0.4 * p })
+        this.peeks.push({ slot, kind, bornAt: this.time, life: 1.35 - 0.45 * p })
       }
       this.nextSpawnAt = this.time + (0.95 - 0.45 * p) * (0.75 + 0.5 * this.rng())
     }
