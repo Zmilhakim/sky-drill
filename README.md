@@ -100,7 +100,7 @@ the same code runs in the browser and in the tests.
 - **WebStorm 2026.3** is the IDE for the project. The `.idea` folder is committed.
 - **JetBrains Air with Junie** (inside WebStorm) scaffolded the Vite + TypeScript project and wrote the first
   version of the unit tests for `src/core`. Those tests were then reviewed with a second agent (Claude Code);
-  several that could pass without exercising their branch were rewritten. It also added the start-screen
+  several that could pass without exercising their branch were rewritten. Junie also added the start-screen
   highlight cycle. The commit history shows which commits came from which step.
 - The rest of the game code was written with Claude Code working in the same project folder. The full account
   is in [docs/AI_WORKFLOW.md](docs/AI_WORKFLOW.md).
