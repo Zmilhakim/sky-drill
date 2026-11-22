@@ -1,0 +1,20 @@
+{
+  "name": "cloud9game",
+  "version": "1.0.0",
+  "description": "Work in progress for the Cloud9 x JetBrains \"Sky's the Limit\" hackathon 2026 (Category 3: Event Mini Game).",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  }
+}
