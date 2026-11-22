@@ -22,8 +22,8 @@ which tool produced the change, so the history can be checked against this docum
 | Game logic and screens: three drills, scoring, leaderboard, canvas UI, sounds | Claude Code | The bulk of the code. Logic was kept free of browser APIs so it could be tested. |
 | Automated play-through in headless Chrome, with screenshots of every screen | Claude Code | Found two bugs before any human played: the saved score showed "#0 today", and a button label overflowed. |
 | Unit tests for `src/core` | Junie in Air | 78 tests in one run, all passing, no source bugs found. |
-| Review of those tests | by hand, in WebStorm and Claude Code | Several tests could pass without testing anything (see below). Rewritten; 80 tests now. |
-| Start-screen highlight cycle | Junie in Air | Worked. One condition only held for a 1-second highlight; generalised in review. |
+| Review of those tests | Claude Code | Several tests could pass without testing anything (see below). Rewritten; 80 tests now. |
+| Start-screen highlight cycle | Junie in Air | Worked. One condition only held for a 1-second highlight; generalised in review by Claude Code. |
 
 ## Three things we learned
 
@@ -35,8 +35,9 @@ target now stands still at first, a dashed line points from the crosshair to it,
 
 **2. Passing tests are not the same as tests that test.** Junie's test for "clicking a teammate costs 300" looked
 for a teammate among randomly spawned shapes and, if none appeared, ended with `expect(true).toBe(true)`. It was
-green either way. The same pattern appeared in two more tests. We rewrote them to place the shape directly and
-assert exact values, and added boundary tests for the hit radius. The TypeScript check also caught five unused
+green either way. The same pattern appeared in two more tests. In review, Claude Code rewrote them to place the
+shape directly and assert exact values, and added boundary tests for the hit radius. (Two commit messages call
+this review "by hand"; it was the second agent's review, not a person's.) The TypeScript check also caught five unused
 imports that the test runner did not mind.
 
 **3. Small tasks with a boundary beat big ones.** Every Junie task named the files it may touch and the checks it
