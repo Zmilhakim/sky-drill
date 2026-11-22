@@ -5,6 +5,8 @@ leaderboard that works with no network.
 
 **Play it now:** https://zmilhakim.github.io/sky-drill/ (leaderboard screen: https://zmilhakim.github.io/sky-drill/board.html)
 
+**Demo video (1:38):** https://youtu.be/uSvMTWjaXlI
+
 Built for the Cloud9 x JetBrains "Sky's the Limit" hackathon 2026, Category 3 (Event Mini Game).
 
 ## The game
