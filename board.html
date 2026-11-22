@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2306121f'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%2335b6ff' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23ffd24a'/%3E%3C/svg%3E" />
+    <title>Sky Drill: live leaderboard</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        background: linear-gradient(#06121f, #0c2740);
+        color: #f4f9ff;
+        font-family: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        padding: 4vh 5vw;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        border-bottom: 2px solid rgba(120, 180, 230, 0.25);
+        padding-bottom: 2vh;
+      }
+      h1 {
+        font-size: 7vh;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+      h1 span {
+        color: #35b6ff;
+        font-size: 3vh;
+        margin-left: 1.5vw;
+      }
+      #meta {
+        color: #8fa9c2;
+        font-size: 2.4vh;
+        font-weight: 600;
+        text-align: right;
+      }
+      main {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 4vw;
+        padding-top: 3vh;
+        min-height: 0;
+      }
+      ol {
+        list-style: none;
+      }
+      li {
+        display: grid;
+        grid-template-columns: 6vw 12vw 1fr auto;
+        align-items: center;
+        height: 7.2vh;
+        font-size: 4.4vh;
+        font-weight: 700;
+        border-radius: 1vh;
+        padding: 0 1.5vw;
+      }
+      li .n {
+        color: #8fa9c2;
+      }
+      li .rank {
+        color: #8fa9c2;
+        font-size: 2.2vh;
+        font-weight: 600;
+      }
+      li:first-child {
+        color: #ffd24a;
+        font-size: 5.4vh;
+      }
+      li:first-child .n {
+        color: #ffd24a;
+      }
+      li.new {
+        background: rgba(255, 210, 74, 0.18);
+        animation: pop 0.6s ease-out;
+      }
+      @keyframes pop {
+        from {
+          transform: scale(1.06);
+          background: rgba(255, 210, 74, 0.5);
+        }
+      }
+      .empty {
+        color: #8fa9c2;
+        font-size: 3.4vh;
+        padding-top: 6vh;
+      }
+      aside > div {
+        background: rgba(10, 28, 46, 0.88);
+        border: 2px solid rgba(120, 180, 230, 0.25);
+        border-radius: 2vh;
+        padding: 2.5vh 2vw;
+        margin-bottom: 3vh;
+      }
+      aside h2 {
+        color: #35b6ff;
+        font-size: 2.2vh;
+        letter-spacing: 0.08em;
+        margin-bottom: 1vh;
+      }
+      aside .big {
+        font-size: 6vh;
+        font-weight: 800;
+      }
+      aside .small {
+        color: #8fa9c2;
+        font-size: 2.2vh;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>SKY DRILL<span>TODAY'S TOP SCORES</span></h1>
+      <div id="meta"></div>
+    </header>
+    <main>
+      <ol id="list"></ol>
+      <aside>
+        <div>
+          <h2>LATEST RUN</h2>
+          <div class="big" id="latest">-</div>
+          <div class="small" id="latestInfo"></div>
+        </div>
+        <div>
+          <h2>FASTEST REACTION TODAY</h2>
+          <div class="big" id="fastest">-</div>
+          <div class="small" id="fastestInfo"></div>
+        </div>
+        <div>
+          <h2>ALL-TIME BEST</h2>
+          <div class="big" id="best">-</div>
+          <div class="small" id="bestInfo"></div>
+        </div>
+      </aside>
+    </main>
+    <script type="module" src="/src/board.ts"></script>
+  </body>
+</html>
