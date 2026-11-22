@@ -46,7 +46,7 @@ A full session takes about 70 seconds, including the short countdown before each
 
 ## Run it
 
-Requires Node.js 20 or later.
+Requires Node.js 20.19 or later (22.12 or later on the 22 line).
 
 ```sh
 npm install
